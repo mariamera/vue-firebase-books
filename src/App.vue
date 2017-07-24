@@ -26,7 +26,12 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3> Books List </h3>
+               <div class="row">
+      <div class="col-xs-6"><h3> Books List </h3></div>
+      <div class="col-xs-6"> <br> <span> search</span> <input  type="search" placeholder="Lookup Books" v-model="lookup"><br>
+      </div>
+</div>
+<!-- .includes("s") -->
             </div>
         </div>
 
@@ -39,16 +44,22 @@
                       <th></th>
                     </tr>
                     </thead>
+
                     <tbody>
-                      <tr v-for="book in books">
+                      <tr v-for="book in filtrarUsuarios">
+
                         <td><a :href="book.url">{{book.title}}</a></td>
                         <td>{{book.Author}}</td>
                         <td><span class="glyphicon glyphicon-trash" aria-hidden="true" v-on:click="removeBook(book)"></span></td>
+
                       </tr>
                     </tbody>
+
                 </table>
             </div>
+
   </div>
+
 </template>
 
 <script>
@@ -80,9 +91,20 @@ export default {
         title: '',
         Author: '',
         url: ''
-      }
+      },
+       lookup: '',
+       busqueda: '2',
     }
   },
+    computed: {
+        filtrarUsuarios() {
+            return this.books.filter((book) =>{
+              return book.title.includes(this.lookup);
+            }) ;
+            //booksRef.child(book['.key']).title.includes(this.busqueda)
+        }
+    },
+
   methods: {
       addBook: function(){
         booksRef.push(this.newBook);
@@ -93,10 +115,13 @@ export default {
       removeBook: function(book){
           booksRef.child(book['.key']).remove();
 
-      }
+      },
 
-  }
+
+  },
+
 }
+
 </script>
 
 
