@@ -69,7 +69,26 @@
   </md-tab>
 
   <md-tab id="books" md-label="Categories">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas.</p>
+   <md-card>
+  <md-card-media-cover md-text-scrim>
+    <md-card-media md-ratio="16:9">
+      <img src="http://vuematerial.io/assets/card-sky.jpg" alt="Skyscraper">
+    </md-card-media>
+
+    <md-card-area>
+      <md-card-header>
+        <div class="md-title">Title goes here</div>
+        <div class="md-subhead">Subtitle here</div>
+      </md-card-header>
+
+      <md-card-actions>
+        <md-button>Action</md-button>
+        <md-button>Action</md-button>
+      </md-card-actions>
+    </md-card-area>
+  </md-card-media-cover>
+</md-card>
+
   </md-tab>
 
   <md-tab id="pictures" md-label="Contact Us">
