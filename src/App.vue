@@ -78,25 +78,25 @@
 <form novalidate @submit.stop.prevent="submit">
   <md-input-container>
     <label>Nombre</label>
-    <md-input v-model="nombre"></md-input>
+    <md-input v-model="nombre" required></md-input>
   </md-input-container>
 
   <md-input-container>
     <label>Telefono</label>
-    <md-input v-model="telefono" ></md-input>
+    <md-input v-model="telefono" required ></md-input>
   </md-input-container>
 
   <md-input-container>
     <label>Email</label>
-    <md-input v-model="Email" type="Email"></md-input>
+    <md-input v-model="email" type="Email" required></md-input>
   </md-input-container>
 
   <md-input-container>
     <label>Mensaje</label>
-    <md-textarea v-model="mensaje"></md-textarea>
+    <md-textarea v-model="mensaje" required></md-textarea>
   </md-input-container>
 
-<md-button @click.native="elegirGanador" class="md-raised md-primary">Submit</md-button>
+<md-button @click.native="submit" class="md-raised md-primary">Submit</md-button>
 </form>
 
 
@@ -131,6 +131,7 @@ let config = {
 let app = Firebase.initializeApp(config);
 let db = app.database();
 let booksRef = db.ref('books');
+
 export default {
   name: 'app',
   firebase: {
@@ -146,7 +147,7 @@ export default {
        lookup: '',
        nombre: '',
        telefono: '',
-       Email: '',
+       email: '',
        mensaje: '',
     }
   },
@@ -172,7 +173,13 @@ export default {
       },
       elegirGanador:function(){
         console.log("hola");
-      }
+      },
+      submit: function() {
+        var body = "Nombre: " + this.nombre +"\n\n\n     telefono: " + this.telefono + "\n     Email: " + this.email + "\n\n      MENSAJE: \n" + this.mensaje;
+        var info = "mailto:test@example.com?subject=subject&body= " + body;
+          window.open(info);
+      },
+
 
   },
 
