@@ -4,7 +4,10 @@
               <h1> Vue.js 2 & Firebase Sample App </h1>
         </div>
 
-        <div  class="panel panel-default">
+
+<md-tabs md-fixed>
+  <md-tab id="movies" md-label="Add Book">
+     <div  class="panel panel-default">
                 <div class="panel-heading">
                   <h3> Add Book</h3>
                 </div>
@@ -22,13 +25,18 @@
                  </form>
                  </div>
         </div>
+  </md-tab>
 
-
-        <div class="panel panel-default">
+  <md-tab id="music" md-label="All Books">
+      <div class="panel panel-default">
             <div class="panel-heading">
                <div class="row">
       <div class="col-xs-6"><h3> Books List </h3></div>
-      <div class="col-xs-6"> <br> <span> search</span> <input  type="search" placeholder="Lookup Books" v-model="lookup"><br>
+      <div class="col-xs-6">
+         <md-input-container>
+    <label>Lookup Books</label>
+    <md-input v-model="lookup"></md-input>
+  </md-input-container>
       </div>
 </div>
 <!-- .includes("s") -->
@@ -57,6 +65,49 @@
 
                 </table>
             </div>
+
+  </md-tab>
+
+  <md-tab id="books" md-label="Categories">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas.</p>
+  </md-tab>
+
+  <md-tab id="pictures" md-label="Contact Us">
+
+
+<form novalidate @submit.stop.prevent="submit">
+  <md-input-container>
+    <label>Nombre</label>
+    <md-input v-model="nombre"></md-input>
+  </md-input-container>
+
+  <md-input-container>
+    <label>Telefono</label>
+    <md-input v-model="telefono" ></md-input>
+  </md-input-container>
+
+  <md-input-container>
+    <label>Email</label>
+    <md-input v-model="Email" type="Email"></md-input>
+  </md-input-container>
+
+  <md-input-container>
+    <label>Mensaje</label>
+    <md-textarea v-model="mensaje"></md-textarea>
+  </md-input-container>
+
+<md-button @click.native="elegirGanador" class="md-raised md-primary">Submit</md-button>
+</form>
+
+
+
+  </md-tab>
+</md-tabs>
+
+
+
+
+
 
   </div>
 
@@ -93,7 +144,10 @@ export default {
         url: ''
       },
        lookup: '',
-       busqueda: '2',
+       nombre: '',
+       telefono: '',
+       Email: '',
+       mensaje: '',
     }
   },
     computed: {
@@ -116,7 +170,9 @@ export default {
           booksRef.child(book['.key']).remove();
 
       },
-
+      elegirGanador:function(){
+        console.log("hola");
+      }
 
   },
 
